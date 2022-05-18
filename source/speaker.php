@@ -30,14 +30,91 @@ echo $result;
     <hr/>
 
 </form>
-<h2>Sounds Presets</h2>
 
+<hr/>
+
+<h2>Internet radio stations</h2>
 <form action="" method="post">
-    <select name="preset">
+    <select name="stations">
         <?php
-        $sounds = array("nature","scanner","pink", "biblia", "nature", "kcbs", "birds", "bible");
-        
-        foreach($sounds as $item){
+
+        // create curl resource
+        $ch = curl_init();
+
+        // set url
+        curl_setopt($ch, CURLOPT_URL, "http://speaker.local:5000/list_stations/");
+
+        //return the transfer as a string
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        // $output contains the output string
+        $output = curl_exec($ch);
+        $stations = explode(',', $output );
+
+        // close curl resource to free up system resources
+        curl_close($ch);
+
+        foreach ($stations as &$item) {
+            echo "<option value='$item'>$item</option>";
+        }
+        ?>
+    </select>
+
+    <input type="submit" name="submit" vlaue="Choose options">
+</form>
+<hr/>
+<h2>Internet nature stations</h2>
+<form action="" method="post">
+    <select name="nature_stations">
+        <?php
+
+        // create curl resource
+        $ch = curl_init();
+
+        // set url
+        curl_setopt($ch, CURLOPT_URL, "http://speaker.local:5000/list_nature_stations/");
+
+        //return the transfer as a string
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        // $output contains the output string
+        $output = curl_exec($ch);
+        $stations = explode(',', $output );
+
+        // close curl resource to free up system resources
+        curl_close($ch);
+
+        foreach ($stations as &$item) {
+            echo "<option value='$item'>$item</option>";
+        }
+        ?>
+    </select>
+
+    <input type="submit" name="submit" vlaue="Choose options">
+</form>
+<hr/>
+<h2>Internet chill stations</h2>
+<form action="" method="post">
+    <select name="chill_stations">
+        <?php
+
+        // create curl resource
+        $ch = curl_init();
+
+        // set url
+        curl_setopt($ch, CURLOPT_URL, "http://speaker.local:5000/list_chill_stations/");
+
+        //return the transfer as a string
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        // $output contains the output string
+        $output = curl_exec($ch);
+        $stations = explode(',', $output );
+
+        // close curl resource to free up system resources
+        curl_close($ch);
+
+        foreach ($stations as &$item) {
             echo "<option value='$item'>$item</option>";
         }
         ?>
@@ -47,6 +124,97 @@ echo $result;
 </form>
 
 <hr/>
+<h2>Internet talk stations</h2>
+<form action="" method="post">
+    <select name="talk_stations">
+        <?php
+
+        // create curl resource
+        $ch = curl_init();
+
+        // set url
+        curl_setopt($ch, CURLOPT_URL, "http://speaker.local:5000/list_talk_stations/");
+
+        //return the transfer as a string
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        // $output contains the output string
+        $output = curl_exec($ch);
+        $stations = explode(',', $output );
+
+        // close curl resource to free up system resources
+        curl_close($ch);
+
+        foreach ($stations as &$item) {
+            echo "<option value='$item'>$item</option>";
+        }
+        ?>
+    </select>
+
+    <input type="submit" name="submit" vlaue="Choose options">
+</form>
+<hr/>
+<h2>Internet upbeat stations</h2>
+<form action="" method="post">
+    <select name="upbeat_stations">
+        <?php
+
+        // create curl resource
+        $ch = curl_init();
+
+        // set url
+        curl_setopt($ch, CURLOPT_URL, "http://speaker.local:5000/list_upbeat_stations/");
+
+        //return the transfer as a string
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        // $output contains the output string
+        $output = curl_exec($ch);
+        $stations = explode(',', $output );
+
+        // close curl resource to free up system resources
+        curl_close($ch);
+
+        foreach ($stations as &$item) {
+            echo "<option value='$item'>$item</option>";
+        }
+        ?>
+    </select>
+
+    <input type="submit" name="submit" vlaue="Choose options">
+</form>
+
+<hr/>
+<h2>Internet bible stations</h2>
+<form action="" method="post">
+    <select name="bible_stations">
+        <?php
+
+        // create curl resource
+        $ch = curl_init();
+
+        // set url
+        curl_setopt($ch, CURLOPT_URL, "http://speaker.local:5000/list_bible_stations/");
+
+        //return the transfer as a string
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        // $output contains the output string
+        $output = curl_exec($ch);
+        $stations = explode(',', $output );
+
+        // close curl resource to free up system resources
+        curl_close($ch);
+
+        foreach ($stations as &$item) {
+            echo "<option value='$item'>$item</option>";
+        }
+        ?>
+    </select>
+
+    <input type="submit" name="submit" vlaue="Choose options">
+</form>
+
 <h2>Output</h2>
 
 <?php
@@ -67,7 +235,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['mute']))
 {
   echo post_it("mute");
 }
-
 
 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['100%']))
 {
@@ -94,31 +261,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['50%']))
   echo post_it("50");
 }
 
-if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['siri_news']))
-{
-    siri("news");
-}
-
-if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['siri_waitwait']))
-{
-    siri("waitwait");
-}
-
-if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['siri_stop']))
-{
-    siri("stop");
-}
-
-if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['google_news']))
-{
-    google("news");
-}
-
-if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['google_stop']))
-{
-    google("stop");
-}
-
 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['cron']))
 {
   echo post_it("cron");
@@ -129,15 +271,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['date_time']))
   echo post_it("date_time");
 }
 
-function siri($word){
-	$path = sprintf("siri_%s",$word);
-	echo post_it($path);
-}
-
-function google($word){
-	$path = sprintf("google_%s",$word);
-	echo post_it($path);
-}
 
 function post_it($path) {
 	require_once('functions.php');
