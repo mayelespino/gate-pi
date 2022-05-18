@@ -65,7 +65,7 @@ echo $result;
 <hr/>
 <h2>Internet nature stations</h2>
 <form action="" method="post">
-    <select name="nature_stations">
+    <select name="stations">
         <?php
 
         // create curl resource
@@ -95,7 +95,7 @@ echo $result;
 <hr/>
 <h2>Internet chill stations</h2>
 <form action="" method="post">
-    <select name="chill_stations">
+    <select name="stations">
         <?php
 
         // create curl resource
@@ -126,7 +126,7 @@ echo $result;
 <hr/>
 <h2>Internet talk stations</h2>
 <form action="" method="post">
-    <select name="talk_stations">
+    <select name="stations">
         <?php
 
         // create curl resource
@@ -156,7 +156,7 @@ echo $result;
 <hr/>
 <h2>Internet upbeat stations</h2>
 <form action="" method="post">
-    <select name="upbeat_stations">
+    <select name="stations">
         <?php
 
         // create curl resource
@@ -187,7 +187,7 @@ echo $result;
 <hr/>
 <h2>Internet bible stations</h2>
 <form action="" method="post">
-    <select name="bible_stations">
+    <select name="stations">
         <?php
 
         // create curl resource
@@ -219,7 +219,7 @@ echo $result;
 
 <?php
     if(isset($_POST['submit'])){
-    if(!empty($_POST['preset'])) {
+    if(!empty($_POST['stations'])) {
        $selected = $_POST['preset'];
        post_it("mute");
        echo post_it($selected);
