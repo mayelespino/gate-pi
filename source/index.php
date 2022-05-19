@@ -1,9 +1,8 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-</head>
-<body>
+<body style="background-color:black;color:white;">
 
 <h1>3336 Fontana </h1>
-<h2>Pi status</h2>
 
 <B>
 <?php
@@ -34,7 +33,6 @@ if ($result == '' ) {
   echo "<b><font color=\"green\">OK</font></b>";
 }
 ?>
-
 </td><td>
 
 </td><td>
@@ -76,28 +74,15 @@ if ($result != "IN" ) {
 <tr/>
 </table>
 
+
+
 <h2>Weather</h2>
 <iframe src="http://wttr.in/94509" height="130" width="240"></iframe>
-<br>
-<a href="weather.php">Full weather 94509</a><br/>
 <br/>
-
-<h2>Alerts</h2>
-<a href="https://twitter.com/hashtag/alertscc">alertscc</a><br/>
-<a href="https://m.pge.com/#outages">pgne outages</a><br/>
-<a href="http://www.sparetheair.org">sparetheair.org</a><br/>
-<br/>
-
-<h2>Traffic</h2>
-<a href="https://511.org">511.org - Traffic map</a><br/>
-<a href="https://511.org/alerts/traffic">511.org - Traffic alerts</a><br/>
-<a href="https://511.org/alerts/transit">511.org - Transist alerts</a><br/>
+<a href="http://wttr.in/94509">Full weather report 94509</a>
 <br/>
 
 
-<h2>Quote</h2>
-<script type="text/javascript" src="https://www.brainyquote.com/link/quotebr.js"></script>
-<small><i><a href="/quote_of_the_day" target="_blank" rel="nofollow">more Quotes</a></i></small>
 
 
 </body>
