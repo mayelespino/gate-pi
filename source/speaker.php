@@ -37,7 +37,7 @@ echo $result;
         $ch = curl_init();
 
         // set url
-        curl_setopt($ch, CURLOPT_URL, "http://speaker.local:5000/list_nature_stations/");
+        curl_setopt($ch, CURLOPT_URL, "http://speaker.local:5000/list_stations/");
 
         //return the transfer as a string
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -70,6 +70,21 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     switch($name) {
     case "mute":
         echo post_it("mute");
+	break;
+    case "100":
+        echo post_it("100");
+	break;
+    case "95":
+        echo post_it("95");
+	break;
+    case "85":
+        echo post_it("85");
+	break;
+    case "75":
+        echo post_it("75");
+	break;
+    case "50":
+        echo post_it("50");
 	break;
     default:
 	echo play_it($value);
