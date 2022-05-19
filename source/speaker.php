@@ -31,6 +31,7 @@ echo $result;
 
 
 <!-- Dynamically created buttons -->
+<H2>Stations</H2>
 
 <?php
         // create curl resource
@@ -56,6 +57,9 @@ echo $result;
 </form>
 
 <!-- Read selection and send request -->
+
+<hr/>
+<H2>Result</H2>
 
 <?php 
 
@@ -87,6 +91,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         echo post_it("50");
 	break;
     default:
+        post_it("mute");
+        echo "$name<br/>";
 	echo play_it($value);
 	break;
     }
