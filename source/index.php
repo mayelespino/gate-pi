@@ -7,7 +7,6 @@
 
 <body bgcolor = "#336699">
 
-
 <h1>3336 Fontana</h1>
 <?php
 date_default_timezone_set('America/Los_Angeles');
@@ -15,14 +14,25 @@ $date   = new DateTime(); //this returns the current date time
 echo date_format($date,"Y/m/d H:i:s");
 echo $result;
 ?>
-<br/>
-<hr/>
-<a href="sensor.php">sensor PI</a>
-<br/>
-<a href="speaker.php">speaker PI</a>
+
 
 <br/>
 <hr/>
+<a href="sensor.php">[sensor]</a>
+<?php
+$output = file_get_contents('http://speaker.local');
+echo $output;
+?>
+<br/>
+<a href="speaker.php">[speaker]</a>
+<?php
+$output = file_get_contents('http://sensor.local');
+echo $output;
+?>
+<br/>
+<hr/>
+
+
 <h1>Weather</h1>
 <br/>
 <py-script>
@@ -35,3 +45,12 @@ print(content)
 
 </body>
 </html>
+<!--
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+https://www.jhanley.com/pyscript-loading-python-code-in-the-browser/
+https://www.tutorialspoint.com/python/python_cgi_programming.htm
+https://readthedocs.org/projects/pyodide/downloads/pdf/latest/
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-->
