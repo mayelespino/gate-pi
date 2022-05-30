@@ -1,10 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-<body style="background-color:powderblue;">
+<body bgcolor = "#336699">
 
-<h1>3336 Fontana Pl</h1>
+<h1>Speaker</h1>
 <a href="index.php">[HOME]</a>
-<br/>
 <?php
 date_default_timezone_set('America/Los_Angeles');
 $date   = new DateTime(); //this returns the current date time
@@ -12,8 +11,8 @@ echo date_format($date,"Y/m/d H:i:s");
 echo $result;
 ?>
 <br/>
+<hr/>
 <form action="speaker.php" method="post">
-    <hr/>
     <h2>Volume Control</h2>
     <input type="submit" name="mute" value="MUTE"/>
     <input type="submit" name="100" value="100%"/>
@@ -26,47 +25,26 @@ echo $result;
     <h2>Information</h2>
     <input type="submit" name="cron" value="cron"/>
     <input type="submit" name="date_time" value="date_time"/>
-    <br/>
-    <hr/>
+</form>
+<br/>
+<hr/>
 
-
-<!-- Dynamically created buttons -->
-<H2>Stations</H2>
-
+<form action="speaker.php" method="post">
 <?php
-        // create curl resource
-        $ch = curl_init();
-
-        // set url
-        curl_setopt($ch, CURLOPT_URL, "http://speaker.local:5000/list_stations/");
-
-        //return the transfer as a string
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-        // $output contains the output string
-        $output = curl_exec($ch);
-        $stations = explode(',', $output );
-
-        // close curl resource to free up system resources
-        curl_close($ch);
-
-        foreach ($stations as &$item) {
-            echo "<input type='submit' name=$item value=$item />";
-        }
+$output = file_get_contents('http://speaker.local:5000/list_stations/');
+$stations = explode(',', $output );
+foreach ($stations as &$item) {
+  echo "<input type='submit' name=$item value=$item />";
+ }
 ?>
 </form>
 
-<!-- Read selection and send request -->
 
-<hr/>
-<H2>Result</H2>
-
-<?php 
+<?php
 
 
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
-    require_once('functions.php');
 
     foreach ($_POST as $name => $value) {
     }
@@ -74,31 +52,55 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     switch($name) {
     case "mute":
         echo post_it("mute");
-	break;
+    break;
     case "100":
         echo post_it("100");
-	break;
+    break;
     case "95":
         echo post_it("95");
-	break;
+    break;
     case "85":
         echo post_it("85");
-	break;
+    break;
     case "75":
         echo post_it("75");
-	break;
+    break;
     case "50":
         echo post_it("50");
-	break;
+    break;
     default:
         post_it("mute");
         echo "$name<br/>";
-	echo play_it($value);
-	break;
+    echo play_it($value);
+    break;
     }
 }
 
-?> 
+function post_url($url) {
+    $ch = curl_init();
+    // Return Page contents.
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    //grab URL and pass it to the variable.
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    $result = curl_exec($ch);
+    return($result);
+}
+
+function post_it($path) {
+    $url = sprintf("http://speaker.local:5000/%s/", $path);
+    $result = post_url($url);
+    return(str_replace("\n", "<br/>", $result));
+}
+
+function play_it($path) {
+    $url = sprintf("http://speaker.local:5000/play_station/%s/", $path);
+    $result = post_url($url);
+    return(str_replace("\n", "<br/>", $result));
+}
+
+?>
+
 
 </body>
 </html>
