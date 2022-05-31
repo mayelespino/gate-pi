@@ -1,9 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-    <head>
-        <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-        <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
-    </head>
 
 <body bgcolor = "#336699">
 
@@ -32,17 +28,24 @@ echo $output;
 <br/>
 <hr/>
 
+<H1>Fortune</H1>
+<br/>
+<?php
+$output = file_get_contents('https://fortuneapi.herokuapp.com/');
+echo str_replace(array("\\n","\\t", "\"","\\"),array("<BR>","","",""),$output);
+?>
+<br/>
+<P> Curtesy of https://github.com/sarah256/fortune-api</P>
+<br/>
+<hr/>
+
 
 <h1>Weather</h1>
 <br/>
-<py-script>
-from pyodide.http import pyfetch
-import asyncio
-response = await pyfetch(url="http://wttr.in/94509", method="GET")
-content = (await response.bytes()).decode('utf-8')
-print(content)
-</py-script>
-
+<?php
+echo file_get_contents('http://wttr.in/94509');
+?>
+-->
 </body>
 </html>
 <!--
