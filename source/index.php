@@ -45,6 +45,15 @@ echo str_replace(array("\\n","\\t", "\"","\\"),array("<BR>","","",""),$output);
 <?php
 echo file_get_contents('http://wttr.in/94509');
 ?>
+<br/>
+<hr/>
+
+
+<h1>News</h1>
+<br/>
+<?php
+echo file_get_contents('https://lite.cnn.com/en');
+?>
 -->
 </body>
 </html>
