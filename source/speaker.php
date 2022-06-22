@@ -77,6 +77,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     break;
     default:
         post_it("mute");
+	echo "Now playing: $value <br/>";
         echo post_it("play_station/$value");
     break;
     }
