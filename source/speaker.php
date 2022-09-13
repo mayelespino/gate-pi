@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-<body style="background-color:powderblue;">
+<body bgcolor="green">
 
 <h1>3336 Fontana Pl</h1>
 <a href="index.php">[HOME]</a>
@@ -28,11 +28,13 @@ echo $result;
     <input type="submit" name="date_time" value="date_time"/>
     <br/>
     <hr/>
+</form>
 
 
 <!-- Dynamically created buttons -->
 <H2>Stations</H2>
 
+<form action="speaker.php" method="post">
 <?php
         // create curl resource
         $ch = curl_init();
