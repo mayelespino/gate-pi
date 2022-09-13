@@ -1,22 +1,17 @@
 <html>
 <head>
 </head>
-<body>
+<body bgcolor = "#336699">
 
-<h1>3336 Fontana Pl</h1>
+<h1>Sensor</h1>
 
 <a href="index.php">[HOME]</a>
-
-<h2>Sensor</h2>
-
-<B>
 <?php
 date_default_timezone_set('America/Los_Angeles');
 $date   = new DateTime(); //this returns the current date time
 echo date_format($date,"Y/m/d H:i:s");
 echo $result;
 ?>
-</B>
 <br/>
 <br/>
 
