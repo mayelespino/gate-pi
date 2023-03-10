@@ -28,19 +28,50 @@ echo $output;
 <br/>
 <hr/>
 
-<H1>Fortune</H1>
-<br/>
+<H2>Dad Jokes</H2>
 <?php
-$output = file_get_contents('https://fortuneapi.herokuapp.com/');
-echo str_replace(array("\\n","\\t", "\"","\\"),array("<BR>","","",""),$output);
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+	CURLOPT_URL => "https://dad-jokes.p.rapidapi.com/random/joke/png",
+	CURLOPT_RETURNTRANSFER => true,
+	CURLOPT_FOLLOWLOCATION => true,
+	CURLOPT_ENCODING => "",
+	CURLOPT_MAXREDIRS => 10,
+	CURLOPT_TIMEOUT => 30,
+	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	CURLOPT_CUSTOMREQUEST => "GET",
+	CURLOPT_HTTPHEADER => [
+		"X-RapidAPI-Host: dad-jokes.p.rapidapi.com",
+		"X-RapidAPI-Key: cb230719a4mshf62634bba5855e0p146542jsnb08b8b854b39"
+	],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+	echo "cURL Error #:" . $err;
+} else {
+	$decoded_data = json_decode($response, true);
+	foreach($decoded_data as $item) {
+		$setup = $item['setup'];
+		$punchline = $item['punchline'];
+		if(!empty($setup)) {
+			echo "$setup<br/>....<br/>$punchline<br/>";
+		}		
+	}
+}
+
 ?>
-<br/>
-<P> Curtesy of https://github.com/sarah256/fortune-api</P>
 <br/>
 <hr/>
 
 
-<h1>Weather</h1>
+<h2>Weather</h2>
 <br/>
 <?php
 echo file_get_contents('http://wttr.in/94509');
@@ -49,15 +80,56 @@ echo file_get_contents('http://wttr.in/94509');
 <hr/>
 
 
-<h1>News</h1>
+<h2>News</h2>
 <br/>
 <?php
-echo file_get_contents('https://lite.cnn.com/en');
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+	CURLOPT_URL => "https://newsdata2.p.rapidapi.com/news?country=us%2C%20mx&category=sports%2Chealth%2Centertainment&language=en%2C%20es",
+	CURLOPT_RETURNTRANSFER => true,
+	CURLOPT_FOLLOWLOCATION => true,
+	CURLOPT_ENCODING => "",
+	CURLOPT_MAXREDIRS => 10,
+	CURLOPT_TIMEOUT => 30,
+	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	CURLOPT_CUSTOMREQUEST => "GET",
+	CURLOPT_HTTPHEADER => [
+		"X-RapidAPI-Host: newsdata2.p.rapidapi.com",
+		"X-RapidAPI-Key: cb230719a4mshf62634bba5855e0p146542jsnb08b8b854b39"
+	],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+	echo "cURL Error #:" . $err;
+} else {
+	$decoded_json = json_decode($response, true);
+	$results = $decoded_json['results'];
+	foreach($results as $article) {
+    		$title = $article['title'];
+		echo "<b>$title</b><br/>";
+		$link = $article['link'];
+		echo "<i>$link</i><br/><br/>";
+		$description = $article['description'];
+		echo "$description<br/><br/>";
+		$content = $article['content'];
+		echo "$content<br/>";
+		echo "<br/><hr/>";
+	}
+
+}
 ?>
--->
+
 </body>
 </html>
 <!--
+	// echo var_dump($decoded_json);
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 https://www.jhanley.com/pyscript-loading-python-code-in-the-browser/
