@@ -21,7 +21,6 @@ echo $result;
     <input type="submit" name="95" value="95%"/>
     <input type="submit" name="85" value="85%"/>
     <input type="submit" name="75" value="75%"/>
-    <input type="submit" name="50" value="50%"/>
     <br/>
     <hr/>
     <h2>Information</h2>
@@ -71,9 +70,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     break;
     case "75":
         echo post_it("75");
-    break;
-    case "50":
-        echo post_it("50");
     break;
     default:
         post_it("mute");
