@@ -26,6 +26,7 @@ $output = file_get_contents('http://sensor.local');
 echo $output;
 ?>
 <br/>
+<a href="bookmarks.html">[bookmarks]</a>
 <hr/>
 
 <H2>Dad Jokes</H2>

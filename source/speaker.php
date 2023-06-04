@@ -26,11 +26,9 @@ echo $result;
     <h2>Information</h2>
     <input type="submit" name="cron" value="cron"/>
     <input type="submit" name="date_time" value="date_time"/>
+    <input type="submit" name="log" value="log"/>
 </form>
 
-
-<br/>
-<hr/>
 
 <form action="speaker.php" method="post">
 <?php
@@ -71,9 +69,22 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     case "75":
         echo post_it("75");
     break;
+    case "log":
+        $output = file_get_contents('http://speaker.local:5000/log/');
+	$output = preg_replace("/\r\n|\r|\n/", '<br/>', $output);
+        echo $output;
+    break;
+    case "date_time":
+        $output = file_get_contents('http://speaker.local:5000/date_time/');
+        echo $output;
+    break;
+    case "cron":
+        $output = file_get_contents('http://speaker.local:5000/cron/');
+	$output = preg_replace("/\r\n|\r|\n/", '<br/>', $output);
+        echo $output;
+    break;
     default:
         post_it("mute");
-	echo "Now playing: $value <br/>";
         echo post_it("play_station/$value");
     break;
     }
