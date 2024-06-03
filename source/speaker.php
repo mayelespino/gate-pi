@@ -44,6 +44,20 @@ echo $result;
 <br/>
 <hr/>
 
+<br/>
+<hr/>
+
+<h2>Hey Google</h2>
+
+<form action="speaker.php" method="post">
+<?php
+    $array = array("time", "weather", "nature_sounds", "news", "stop")
+    foreach ($array as &$item) {
+      echo "<input type='submit' name=$item value=$item />";
+ }
+?>
+</form>
+
 <?php
 
 
@@ -59,32 +73,51 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     break;
     case "100":
         echo post_it("100");
-    break;
+        break;
     case "95":
         echo post_it("95");
-    break;
+        break;
     case "85":
         echo post_it("85");
-    break;
+        break;
     case "75":
         echo post_it("75");
-    break;
+        break;
     case "log":
         $output = file_get_contents('http://speaker.local:5000/log/');
 	$output = preg_replace("/\r\n|\r|\n/", '<br/>', $output);
         echo $output;
-    break;
+        break;
     case "date_time":
         $output = file_get_contents('http://speaker.local:5000/date_time/');
         echo $output;
-    break;
+        break;
     case "cron":
         $output = file_get_contents('http://speaker.local:5000/cron/');
 	$output = preg_replace("/\r\n|\r|\n/", '<br/>', $output);
         echo $output;
-    break;
+        break;
     default:
         post_it("mute");
+        break;
+    case "time":
+        echo post_it("heygoogle/time");
+        break;
+    case "weather":
+        echo post_it("heygoogle/weather");
+        break;
+    case "nature_sounds":
+        echo post_it("heygoogle/nature_sounds");
+        break;
+    case "news":
+        echo post_it("heygoogle/news");
+        break;
+    case "stop":
+        echo post_it("heygoogle/stop");
+        break;
+    default:
+        post_it("mute");
+	    echo "Now playing: $value <br/>";
         echo post_it("play_station/$value");
     break;
     }
