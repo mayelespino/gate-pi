@@ -4,6 +4,7 @@
 
 <h1>Speaker</h1>
 <a href="index.php">[HOME]</a>
+
 <?php
 date_default_timezone_set('America/Los_Angeles');
 $date   = new DateTime(); //this returns the current date time
@@ -30,7 +31,11 @@ echo $result;
 </form>
 
 
+<br/>
+<hr/>
+
 <form action="speaker.php" method="post">
+<h2>Stations</h2>
 <?php
     $output = file_get_contents('http://speaker.local:5000/list_stations/');
     $stations = explode(',', $output );
@@ -44,23 +49,25 @@ echo $result;
 <br/>
 <hr/>
 
-<br/>
-<hr/>
-
 <h2>Hey Google</h2>
 
 <form action="speaker.php" method="post">
-<?php
-    $array = array("time", "weather", "nature_sounds", "news", "stop")
-    foreach ($array as &$item) {
-      echo "<input type='submit' name=$item value=$item />";
- }
-?>
+    <input type='submit' name='time' value='time' />
+    <input type='submit' name='weather' value='weather' />
+    <input type='submit' name='nature_sounds' value='nature_sounds' />
+    <input type='submit' name='news' value='news' />
+    <input type='submit' name='stop' value='stop' />
 </form>
 
+<br/>
+<hr/>
+
+<h2>Output</h2>
+
+</body>
+</html>
+
 <?php
-
-
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
 
@@ -85,25 +92,22 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         break;
     case "log":
         $output = file_get_contents('http://speaker.local:5000/log/');
-	$output = preg_replace("/\r\n|\r|\n/", '<br/>', $output);
+        $output = preg_replace("/\r\n|\r|\n/", '<br/>', $output);
         echo $output;
         break;
-    case "date_time":
+   case "date_time":
         $output = file_get_contents('http://speaker.local:5000/date_time/');
         echo $output;
         break;
     case "cron":
         $output = file_get_contents('http://speaker.local:5000/cron/');
-	$output = preg_replace("/\r\n|\r|\n/", '<br/>', $output);
+        $output = preg_replace("/\r\n|\r|\n/", '<br/>', $output);
         echo $output;
         break;
-    default:
-        post_it("mute");
-        break;
-    case "time":
+   case "time":
         echo post_it("heygoogle/time");
         break;
-    case "weather":
+   case "weather":
         echo post_it("heygoogle/weather");
         break;
     case "nature_sounds":
@@ -117,7 +121,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         break;
     default:
         post_it("mute");
-	    echo "Now playing: $value <br/>";
+        echo "Now playing: $value <br/>";
         echo post_it("play_station/$value");
     break;
     }
@@ -137,9 +141,6 @@ function post_it($path) {
 
 ?>
 
-
-</body>
-</html>
 <!--
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
