@@ -26,49 +26,11 @@ $output = file_get_contents('http://sensor.local');
 echo $output;
 ?>
 <br/>
-<a href="bookmarks.html">[bookmarks]</a>
-<hr/>
-
-<H2>Dad Jokes</H2>
-<?php
-
-$curl = curl_init();
-
-curl_setopt_array($curl, [
-	CURLOPT_URL => "https://dad-jokes.p.rapidapi.com/random/joke/png",
-	CURLOPT_RETURNTRANSFER => true,
-	CURLOPT_FOLLOWLOCATION => true,
-	CURLOPT_ENCODING => "",
-	CURLOPT_MAXREDIRS => 10,
-	CURLOPT_TIMEOUT => 30,
-	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-	CURLOPT_CUSTOMREQUEST => "GET",
-	CURLOPT_HTTPHEADER => [
-		"X-RapidAPI-Host: dad-jokes.p.rapidapi.com",
-		"X-RapidAPI-Key: cb230719a4mshf62634bba5855e0p146542jsnb08b8b854b39"
-	],
-]);
-
-$response = curl_exec($curl);
-$err = curl_error($curl);
-
-curl_close($curl);
-
-if ($err) {
-	echo "cURL Error #:" . $err;
-} else {
-	$decoded_data = json_decode($response, true);
-	foreach($decoded_data as $item) {
-		$setup = $item['setup'];
-		$punchline = $item['punchline'];
-		if(!empty($setup)) {
-			echo "$setup<br/>....<br/>$punchline<br/>";
-		}		
-	}
-}
-
-?>
+<a href="http://sensor.local:667" target="_blank">[darkstat]</a>
 <br/>
+<a href="http://sensor.local:3000" target="_blank">[ntopng]</a>
+<br/>
+<a href="bookmarks.php">[bookmarks]</a>
 <hr/>
 
 
@@ -88,7 +50,7 @@ echo file_get_contents('http://wttr.in/94509');
 $curl = curl_init();
 
 curl_setopt_array($curl, [
-	CURLOPT_URL => "https://newsdata2.p.rapidapi.com/news?country=us%2C%20mx&category=sports%2Chealth%2Centertainment&language=en%2C%20es",
+	CURLOPT_URL => "https://text.npr.org",
 	CURLOPT_RETURNTRANSFER => true,
 	CURLOPT_FOLLOWLOCATION => true,
 	CURLOPT_ENCODING => "",
@@ -126,6 +88,11 @@ if ($err) {
 
 }
 ?>
+
+<H2>Links</H2>
+
+<a href='https://www.sf72.org'>SF72 - San Francisco </a><br/>
+<a href='https://text.npr.org'>NPR</a><br/>
 
 </body>
 </html>
