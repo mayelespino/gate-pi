@@ -8,39 +8,100 @@ from icecream import ic
 def ping():
     return("PONG!!")
 
-def speakerLog():
-    speakerpi = config['DEFAULT']['speakerpi_url']
-    api_url = f"{speakerpi}/log/"
-    return(requests.get(api_url).text)
+def help(functDict):
+    return(", ".join(functDict.keys()))
 
 def speakerCron():
-    speakerpi = config['DEFAULT']['speakerpi_url']
     api_url = f"{speakerpi}/cron/"
     return(requests.get(api_url).text)
 
 def speakerList():
-    speakerpi = config['DEFAULT']['speakerpi_url']
     api_url = f"{speakerpi}/list_stations/"
     return(requests.get(api_url).text)
 
 def speakerMute():
-    speakerpi = config['DEFAULT']['speakerpi_url']
     api_url = f"{speakerpi}/mute/"
     return(requests.post(api_url).text)
 
 def speakerAmbient():
-    speakerpi = config['DEFAULT']['speakerpi_url']
-    api_url = f"{speakerpi}/play_station/ambient1/"
+    api_url = f"{speakerpi}/play_station/ambient2/"
     return(requests.post(api_url).text)
+
+def speakerBible():
+    api_url = f"{speakerpi}/play_station/biblia3/"
+    return(requests.post(api_url).text)
+
+def speakerWawas():
+    api_url = f"{speakerpi}/play_station/chil4/"
+    return(requests.post(api_url).text)
+
+def speakerTalk():
+    api_url = f"{speakerpi}/play_station/talk3/"
+    return(requests.post(api_url).text)
+
+def heyGoogleNews():
+    api_url = f"{speakerpi}/heygoogle/news/"
+    return(requests.post(api_url).text)
+
+def heyGoogleWeather():
+    api_url = f"{speakerpi}/heygoogle/weather/"
+    return(requests.post(api_url).text)
+
+def heyGoogleStop():
+    api_url = f"{speakerpi}/heygoogle/stop/"
+    return(requests.post(api_url).text)
+
+def heyGoogleTime():
+    api_url = f"{speakerpi}/heygoogle/time/"
+    return(requests.post(api_url).text)
+
+def heyGoogleNatureSounds():
+    api_url = f"{speakerpi}/heygoogle/nature_sounds/"
+    return(requests.post(api_url).text)
+
+def sensorBright():
+    api_url = f"{sensorpi}/brightness/"
+    response = requests.get(api_url).text
+    return(f"brightness: {response}")
+
+def sensorHumidity():
+    api_url = f"{sensorpi}/humidity/"
+    response = requests.get(api_url).text
+    return(f"humidity: {response}")
+
+def sensorOnBoardTemp():
+    api_url = f"{sensorpi}/onboard-temp/"
+    response = requests.get(api_url).text
+    return(f"on board temp: {response}")
+
+def sensorTemp():
+    api_url = f"{sensorpi}/temperature/"
+    response = requests.get(api_url).text
+    return(f"ambient temp: {response}")
+
+def sensorBarometer():
+    api_url = f"{sensorpi}/barometer/"
+    response = requests.get(api_url).text
+    return(f"barometer: {response}")
+
+def sensorMotion():
+    api_url = f"{sensorpi}/human/"
+    response = requests.get(api_url).text
+    return(f"motion sensor: {response}")
+
+# def sensorBTStamp():
+#     api_url = f"{sensorpi}/bt-stamp/"
+#     return(requests.get(api_url).text)
 
 #########################################################
 # Main - Implementation
 #########################################################
 def main (functionDictionary):
+
+    # Read email configuration values
     imap_server = config['DEFAULT']['imap_server']
     imap_password = config['DEFAULT']['imap_password']
     gate_email = config['DEFAULT']['gate_email']
-
     SMTP_HOST = config['DEFAULT']['smtp_server']
     SMTP_USER = config['DEFAULT']['gate_email']
     SMTP_PASS = config['DEFAULT']['smtp_password']
@@ -53,7 +114,6 @@ def main (functionDictionary):
     imap_server = imaplib.IMAP4_SSL(host=imap_server)
     imap_server.login(gate_email, imap_password)
     imap_server.select()  # Default is `INBOX`
-
 
     # Craft the email
     from_email = f'<{gate_email}>'  
@@ -77,10 +137,10 @@ def main (functionDictionary):
             multipart_payload = message.get_payload()
             for sub_message in multipart_payload:
                 sms_request = sub_message.get_payload()
-                ic(f"multipart: {sms_request}")
+                ic("multipart", sms_request)
         else:  # Not a multipart message, payload is simple string
             sms_request = message.get_payload()
-            ic(f"single: {sms_request}")
+            ic("single", sms_request)
 
         # Delete an email
         imap_server.store(message_number, '+FLAGS', '\Deleted')
@@ -91,14 +151,20 @@ def main (functionDictionary):
 
     sms_request_parts = sms_request.lower().strip().split()
     ic(sms_request_parts)
+
     sms_request_function = '_'.join(sms_request_parts)
     ic(sms_request_function)
     if sms_request_function not in functionDictionary:
-        ic(sms_request_function, "Not found.")
+        ic("Not found.", sms_request_function)
         return
-
-    sms_response = functionDictionary[sms_request_function]()
-    body = f"ack {sms_response}"
+    elif functionDictionary[sms_request_function] == help:
+        sms_response = help(functionDictionary)
+        ic("help", sms_response)
+    else:
+        sms_response = functionDictionary[sms_request_function]()
+        ic("else", sms_response)
+    
+    body = f"{sms_response}"
     ic(body)
     email_message = headers + "\r\n" + body  # Blank line needed between headers and body
     # Connect, authenticate, and send mail
@@ -116,20 +182,40 @@ def main (functionDictionary):
 if __name__ == "__main__" :
     # Read configuration file
     config = configparser.ConfigParser()
-    config.read('/home/pi/email_gate/email_gate.cfg')
+    config.read('/home/pi/sms_gate/sms_gate.cfg')
+    speakerpi = config['DEFAULT']['speakerpi_url']
+    sensorpi = config['DEFAULT']['sensorpi_url']
+    ic.disable()
 
     functionDict = {
             "ping"                  : ping,
-            "speaker"               : speakerLog,
-            "speaker_log"           : speakerLog,
+            "help"                  : help,
+            "?"                     : help,
+            "mute"                  : speakerMute,
+            "speaker"               : speakerList,
             "speaker_cron"          : speakerCron,
             "speaker_list"          : speakerList,
             "speaker_stations"      : speakerList,
-            "speaker_play_ambient"  : speakerAmbient,
-            "play_ambient"          : speakerAmbient,
             "speaker_ambient"       : speakerAmbient,
-            "mute"                  : speakerMute,
             "speaker_mute"          : speakerMute,
+            "speaker_ambient"       : speakerAmbient,
+            "speaker_wawas"         : speakerWawas,
+            "speaker_talk"          : speakerTalk,
+            "speaker_bible"         : speakerBible,
+            "google_news"           : heyGoogleNews,
+            "google_stop"           : heyGoogleStop,
+            "google_time"           : heyGoogleTime,
+            "google_nature"         : heyGoogleNatureSounds,
+            "google_weather"        : heyGoogleWeather,
+            "sensor_bright"         : sensorBright,
+            "sensor_brightness"      : sensorBright,
+            "sensor_humidity"       : sensorHumidity,
+            "sensor_board_temp"     : sensorOnBoardTemp,
+            "sensor_temp"           : sensorTemp,
+            "sensor_barometer"      : sensorBarometer,
+            "sensor_motion"         : sensorMotion,
         }
 
     main(functionDict)
+
+# EOF
