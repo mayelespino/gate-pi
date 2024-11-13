@@ -107,23 +107,5 @@ foreach($arr as $line) {
 
 ?>
 
-<h3>@Home</h3>
-<?php
-$homepage = file_get_contents('http://sensor.local:5000/athome-history/');
-$arr = explode("\n", $homepage);
-foreach($arr as $line) {
-    $pos = strpos($line, "out");
-    if ($pos != false) {
-        echo "<font color='red'>";
-        echo $line;
-        echo "</font></br>";
-    } else { 
-        echo $line;
-        echo "</br>";
-    } // if
-} // for 
-
-?>
-
 </body>
 </html>
