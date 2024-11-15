@@ -39,4 +39,11 @@ To get information from the sensor, on a respberry pi on my home lab, on my netw
 <img src="images/sms_gate_03.png" width="500" height="350"/>
 
 
+Using this service I can interact with my Google assistant in my home lab, sending messages like: 
+
+<img src="images/sms_gate_04.jpeg" width="500" height="100"/>
+
+The sms service will ask the speaker service to say "google stop" (in this example) through the speakers and the google home assistant will respond.
+
+
 For sms gateway setup information [click here](sms_gate/readme.md)
