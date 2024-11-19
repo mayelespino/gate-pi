@@ -2,7 +2,7 @@
 Description=Pinggy Tunnel Startup
 
 [Service]
-ExecStart=/home/pi/gate-pi/source/start.sh
+ExecStart=/home/pi/gate-pi/sms_gate/start.sh
 Restart=on-failure
 RestartSec=10s
 
