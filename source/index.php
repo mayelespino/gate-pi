@@ -34,11 +34,11 @@ echo $output;
 
 
 <br/>
+<a href="bookmarks.php">[bookmarks]</a>
+<br/>
 <a href="http://sensor.local:667" target="_blank">[darkstat]</a>
 <br/>
 <a href="http://sensor.local:3000" target="_blank">[ntopng]</a>
-<br/>
-<a href="bookmarks.php">[bookmarks]</a>
 <hr/>
 
 <H2>Links</H2>

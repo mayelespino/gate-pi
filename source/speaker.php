@@ -3,7 +3,10 @@
 <body bgcolor = "#336699">
 
 <h1>Speaker</h1>
-<a href="index.php">[HOME]</a>
+
+<button onclick="history.back()">Go Back</button>
+<hr/>
+<br/>
 
 <?php
 date_default_timezone_set('America/Los_Angeles');

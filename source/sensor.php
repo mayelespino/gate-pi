@@ -5,7 +5,10 @@
 
 <h1>Sensor</h1>
 
-<a href="index.php">[HOME]</a>
+<button onclick="history.back()">Go Back</button>
+<hr/>
+<br/>
+
 <?php
 date_default_timezone_set('America/Los_Angeles');
 $date   = new DateTime(); //this returns the current date time
