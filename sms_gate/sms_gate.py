@@ -212,12 +212,15 @@ if __name__ == "__main__" :
             "google_nature"         : heyGoogleNatureSounds,
             "google_weather"        : heyGoogleWeather,
             "sensor_bright"         : sensorBright,
-            "sensor_brightness"      : sensorBright,
+            "sensor_brightness"     : sensorBright,
             "sensor_humidity"       : sensorHumidity,
             "sensor_board_temp"     : sensorOnBoardTemp,
             "sensor_temp"           : sensorTemp,
             "sensor_barometer"      : sensorBarometer,
             "sensor_motion"         : sensorMotion,
+            "speed_test"            : speedTest,
+            "speedtest"             : speedTest,
+            "sensor_all"            : sensorAll,
         }
 
     main(functionDict)

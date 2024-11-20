@@ -20,95 +20,93 @@ echo $result;
 
 
 
-<table border=1>
-<tr>
-<td>
-<h3>Last check</h3>
-<b>
-<?php
-$homepage = file_get_contents('http://sensor.local:5000/time-stamp/');
-echo $homepage;
-?>
+<table border=0>
+    <tr>
+        <td>
+            <b>Last check</b>
+        </td>
+        <td>
+            <?php
+            $homepage = file_get_contents('http://sensor.local:5000/time-stamp/');
+            echo "hi";
+            ?>
 
-</td>
-<td>
-
-<h3>Brightness</h3>
-<?php
-$homepage = file_get_contents('http://sensor.local:5000/brightness/');
-echo $homepage;
-?>
-
-</td>
-<td>
-
-<h3>Humidity</h3>
-<?php
-$homepage = file_get_contents('http://sensor.local:5000/humidity/');
-echo $homepage;
-?>
-
-</td>
-<td>
-
-<h3>Onboard Temp</h3>
-<?php
-$homepage = file_get_contents('http://sensor.local:5000/onboard-temp/');
-echo $homepage;
-?>
-
-</td>
-</tr>
-<tr>
-<td>
-
-<h3>Temperature</h3>
-<?php
-$homepage = file_get_contents('http://sensor.local:5000/temperature/');
-echo $homepage;
-?>
-
-</td>
-<td>
-
-<h3>Barometer</h3>
-<?php
-$homepage = file_get_contents('http://sensor.local:5000/barometer/');
-echo $homepage;
-?>
-
-</td>
-<td>
-
-<h3>Motion</h3>
-<?php
-$homepage = file_get_contents('http://sensor.local:5000/human/');
-echo $homepage;
-?>
-
-</td>
-<td>
-<h3>Bluetooth</h3>
-<?php
-$homepage = file_get_contents('http://sensor.local:5000/bt-stamp/');
-echo $homepage;
-?>
-</td>
-</tr>
-
+        </td>
+    </tr>
+        <td>
+            <b>Brightness</b>
+        </td>
+        <td>
+            <?php
+            $homepage = file_get_contents('http://sensor.local:5000/brightness/');
+            echo $homepage;
+            ?>
+        </td>
+    <tr>
+        <td>
+            <b>Humidity</b>
+        </td>
+        <td>
+            <?php
+            $homepage = file_get_contents('http://sensor.local:5000/humidity/');
+            echo $homepage;
+            ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>Onboard Temp</b>
+        </td>
+        <td>
+            <?php
+            $homepage = file_get_contents('http://sensor.local:5000/onboard-temp/');
+            echo $homepage;
+            ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>Temperature</b>
+        </td>
+        <td>
+            <?php
+            $homepage = file_get_contents('http://sensor.local:5000/temperature/');
+            echo $homepage;
+            ?>
+        </td>
+    </tr>
+        <td>
+            <b>Barometer</b>
+        </td>
+        <td>
+            <?php
+            $homepage = file_get_contents('http://sensor.local:5000/barometer/');
+            echo $homepage;
+            ?>
+        </td>
+    </tr>
+        <td>
+            <b>Motion</b>
+        </td>
+        <td>
+            <?php
+            $homepage = file_get_contents('http://sensor.local:5000/human/');
+            echo $homepage;
+            ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>SpeedTest</b>
+        </td>
+        <td>
+            <?php
+            $homepage = file_get_contents('http://sensor.local:5000/speedtest/');
+            echo $homepage;
+            ?>
+        </td>
+    </tr>
 </table>
-
-<h2>History</h2>
-<h3>Temperature</h3>
-<?php
-$homepage = file_get_contents('http://sensor.local:5000/temp-history/');
-$arr = explode("\n", $homepage);
-foreach($arr as $line) {
-    echo $line;
-    echo "</br>";
-}
-
-?>
 
 </body>
 </html>
