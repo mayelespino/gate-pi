@@ -89,9 +89,13 @@ def sensorMotion():
     response = requests.get(api_url).text
     return(f"motion sensor: {response}")
 
-# def sensorBTStamp():
-#     api_url = f"{sensorpi}/bt-stamp/"
-#     return(requests.get(api_url).text)
+def speedTest():
+    api_url = f"{sensorpi}/speedtest/"
+    return(requests.get(api_url).text)
+
+def sensorAll():
+    api_url = f"{sensorpi}/all/"
+    return(requests.get(api_url).text)
 
 #########################################################
 # Main - Implementation
