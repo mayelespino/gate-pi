@@ -4,6 +4,7 @@ import email
 from smtplib import SMTP_SSL, SMTP_SSL_PORT
 import requests
 from icecream import ic
+import time
 
 def ping():
     return("PONG!!")
@@ -24,7 +25,7 @@ def speakerMute():
     return(requests.post(api_url).text)
 
 def speakerAmbient():
-    api_url = f"{speakerpi}/play_station/ambient2/"
+    api_url = f"{speakerpi}/play_station/ambient1/"
     return(requests.post(api_url).text)
 
 def speakerBible():
@@ -32,11 +33,11 @@ def speakerBible():
     return(requests.post(api_url).text)
 
 def speakerWawas():
-    api_url = f"{speakerpi}/play_station/chil4/"
+    api_url = f"{speakerpi}/play_station/reggae1/"
     return(requests.post(api_url).text)
 
 def speakerTalk():
-    api_url = f"{speakerpi}/play_station/talk3/"
+    api_url = f"{speakerpi}/play_station/theater1/"
     return(requests.post(api_url).text)
 
 def heyGoogleNews():
@@ -223,6 +224,8 @@ if __name__ == "__main__" :
             "sensor_all"            : sensorAll,
         }
 
-    main(functionDict)
+    for i in range(5):
+        main(functionDict)
+        time.sleep(10)
 
 # EOF
