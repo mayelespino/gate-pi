@@ -1,23 +1,20 @@
 # gate-pi
-![gate1a](images/gate-1a.png)
-![gate1b](images/gate-1b.png)
+
+<u>The web-gate-startup.service</u>
+
+There is a separate ```nginx``` installation and systemctl service for the web server.
+
+<u>web-gate-startup.service</u>
+
+The ```web-gate-startup.service``` is concerned with stating and managing the tunnel. The tunnel service I use is <a href="https://pinggy.io">https://pinggy.io</a>. The tunnel I create is ```https://fontana3336pl.a.pinggy.link```  then mapped so to ```http://mayelespino.com/home```
 
 
-# Links and Notes
-- https://developers.nest.com/documentation/cloud/sample-code-auth
-- https://pypi.python.org/pypi/python-nest
-- https://stackoverflow.com/questions/19091087/open-redis-port-for-remote-connections
-- php5-curl
-  - https://www.digitalocean.com/community/questions/curl-is-not-installed-in-your-php-installation
+<u>/var/www/html/index.php</u>
 
-- To check the health of the sensor.local
- - https://www.w3schools.com/python/ref_requests_get.asp
+The ```/var/www/html/index.php``` is the main file that links in the following:
 
-- To get weather reports
-  - http://www.webupd8.org/2016/04/get-weather-information-from-terminal.html 
-  - Kudos to https://github.com/chubin/wttr.in
+- speaker.php
+- sensor.php
+- bookmarks.php
 
-#  To password protect
-
-- https://stackoverflow.com/questions/4115719/easy-way-to-password-protect-php-page
-
+The PHP files executes requests to the REST API of the corresponding services running on other raspberry pies. The files need to be copied here from the git repo: ```gate-pi/web_gate```.
