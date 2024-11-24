@@ -20,15 +20,15 @@ echo $result;
 
 
 
-<table border=0>
+<table border=1>
     <tr>
         <td>
             <b>Last check</b>
         </td>
         <td>
             <?php
-            $homepage = file_get_contents('http://sensor.local:5000/time-stamp/');
-            echo "hi";
+            $response = file_get_contents('http://sensor.local:5000/time-stamp/');
+            echo $response;
             ?>
 
         </td>
@@ -38,8 +38,8 @@ echo $result;
         </td>
         <td>
             <?php
-            $homepage = file_get_contents('http://sensor.local:5000/brightness/');
-            echo $homepage;
+            $response = file_get_contents('http://sensor.local:5000/brightness/');
+            echo $response;
             ?>
         </td>
     <tr>
@@ -48,8 +48,8 @@ echo $result;
         </td>
         <td>
             <?php
-            $homepage = file_get_contents('http://sensor.local:5000/humidity/');
-            echo $homepage;
+            $response = file_get_contents('http://sensor.local:5000/humidity/');
+            echo $response;
             ?>
         </td>
     </tr>
@@ -59,8 +59,8 @@ echo $result;
         </td>
         <td>
             <?php
-            $homepage = file_get_contents('http://sensor.local:5000/onboard-temp/');
-            echo $homepage;
+            $response = file_get_contents('http://sensor.local:5000/onboard-temp/');
+            echo $response;
             ?>
         </td>
     </tr>
@@ -70,8 +70,8 @@ echo $result;
         </td>
         <td>
             <?php
-            $homepage = file_get_contents('http://sensor.local:5000/temperature/');
-            echo $homepage;
+            $response = file_get_contents('http://sensor.local:5000/temperature/');
+            echo $response;
             ?>
         </td>
     </tr>
@@ -80,8 +80,8 @@ echo $result;
         </td>
         <td>
             <?php
-            $homepage = file_get_contents('http://sensor.local:5000/barometer/');
-            echo $homepage;
+            $response = file_get_contents('http://sensor.local:5000/barometer/');
+            echo $response;
             ?>
         </td>
     </tr>
@@ -90,8 +90,8 @@ echo $result;
         </td>
         <td>
             <?php
-            $homepage = file_get_contents('http://sensor.local:5000/human/');
-            echo $homepage;
+            $response = file_get_contents('http://sensor.local:5000/human/');
+            echo $response;
             ?>
         </td>
     </tr>
@@ -101,8 +101,9 @@ echo $result;
         </td>
         <td>
             <?php
-            $homepage = file_get_contents('http://sensor.local:5000/speedtest/');
-            echo $homepage;
+            $response = file_get_contents('http://sensor.local:5000/speedtest/');
+            $response = str_replace(",",",<br/>", $response);
+            echo $response;
             ?>
         </td>
     </tr>
