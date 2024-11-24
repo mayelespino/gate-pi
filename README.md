@@ -22,6 +22,10 @@ When the speaker link is accessible this is the page you will see:
 
 <img src="images/speaker-pi_01.png" width="700" height="500"/>
 
+For more information web gateway [click here](web_gate/readme.md)
+
+<hr/>
+
 ## SMS Gateway
 
 This is another service that is based on SMS messages which are received as emails. I have a special email account for this. The responses are sent emails and the provider turns them into SMS messages. So I can use my phone to interact with my services inside my local network.
@@ -46,4 +50,4 @@ Using this service I can interact with my Google assistant in my home lab, sendi
 The sms service will ask the speaker service to say "google stop" (in this example) through the speakers and the google home assistant will respond.
 
 
-For sms gateway setup information [click here](sms_gate/readme.md)
+For sms gateway [click here](sms_gate/readme.md)
