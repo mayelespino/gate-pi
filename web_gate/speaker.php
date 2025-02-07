@@ -5,8 +5,11 @@
 <h1>Speaker</h1>
 
 <button onclick="history.back()">Go Back</button>
-<hr/>
-<br/>
+<hr/> <br/>
+<script>(function(d, s){if(!window.rel){s = d.createElement("script");s.type = "text/javascript";s.async = true;s.id = "radio-de-embedded";s.src = "https://www.radio.net/inc/microsite/js/full.js";d.getElementsByTagName("head")[0].appendChild(s);window.rel = true;}}(document));</script>
+    <div class="ng-app-embedded"><div ui-view class="microsite embedded-radio-player" data-playerwidth="340px" data-playertype="web_embedded" data-playstation="bibleradiobook" data-autoplay="true" data-apikey="df04ff67dd3339a6fc19c9b8be164d5b5245ae93"></div></div><noscript><a href="https://www.radio.net/s/bibleradiobook" target="bibleradio">Bible Radio Book on radio.net</a></noscript>
+    
+<hr/> <br/>
 
 <?php
 date_default_timezone_set('America/Los_Angeles');
