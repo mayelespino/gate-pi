@@ -5,10 +5,32 @@
     <a href="index.php">[Home]</a>
     <h1>Bookmarks</h1>
 
-<button onclick="history.back()">Go Back</button>
 <hr/>
 <br/>
 
+<h2>Add</h2>
+<form name="add_form" method="post" action="add_bm_form.php">
+  <label for="url">url:</label><br>
+  <input type="text" id="url" name="url" size="80"><br>
+  <label for="description">description:</label><br>
+  <input type="text" id="description" name="description" size="80"><br>
+  <label for="tags">tags:</label><br>
+  <input type="text" id="tags" name="tags" size="80" > <br>
+  <input type="submit" value="Submit">
+</form>
+
+<br><br>
+
+<h2>Search</h2>
+<form name="search_form" method="post" action="search_bm_form.php">
+  <label for="seach_string">seach_string:</label><br>
+  <input type="text" id="seach_string" name="search_string" size="80"> <br>
+  <input type="submit" value="Submit">
+</form>
+
+<br/><br/>
+
+<!--
 <?php
    class MyDB extends SQLite3 {
       function __construct() {
@@ -37,5 +59,7 @@ EOF;
    $db->close();
 
 ?>
+-->
+
 </body>
 </html>
