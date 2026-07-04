@@ -47,8 +47,6 @@ The "OK" badges next to Speaker and Monitor indicate the corresponding Pi and it
 - **bookmarks.php** — a small bookmark manager backed by storage mounted at `/mnt/bookmarks`.
 - **darkstat / ntopng** — network monitoring services running elsewhere in the lab.
 
-<img src="images/web_gate_02.png" width="700" height="500"/>
-
 When on the LAN, the speaker page looks like this:
 
 <img src="images/speaker-pi_01.png" width="700" height="500"/>
